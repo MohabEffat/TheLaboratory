@@ -1,0 +1,9 @@
+﻿global using TheLaboratory.Model;
+global using TheLaboratory.Options;
+global using TheLaboratory.Services;
+global using TheLaboratory.Services.Interfaces;
+global using Microsoft.Extensions.Options;
+global using RabbitMQ.Client;
+global using System.Text;
+global using System.Text.Json;
+global using RabbitMQ.Client.Events;
