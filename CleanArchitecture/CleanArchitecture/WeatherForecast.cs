@@ -1,4 +1,4 @@
-namespace ToDo.API
+namespace CleanArchitecture
 {
     public class WeatherForecast
     {
