@@ -8,9 +8,9 @@ namespace E_Shop.Infrastructure.Data
         {
 
         }
-        DbSet<Customer> customers {  get; set; }
-        DbSet<Order> orders { get; set; }
-        DbSet<Item> items { get; set; }
+        public DbSet<Customer> customers {  get; set; }
+        public DbSet<Order> orders { get; set; }
+        public DbSet<Item> items { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

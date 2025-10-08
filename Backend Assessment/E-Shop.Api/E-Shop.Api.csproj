@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	  <PackageReference Include="Carter" Version="8.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.20">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

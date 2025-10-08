@@ -1,4 +1,6 @@
-﻿using E_Shop.Infrastructure.Data;
+﻿using E_shop.Core.interfaces;
+using E_Shop.Infrastructure.Data;
+using E_Shop.Infrastructure.Data.Repositories;
 namespace E_Shop.Infrastructure
 {
     public static class DependencyInjection
@@ -10,6 +12,10 @@ namespace E_Shop.Infrastructure
             {
                 options.UseSqlite(configuration.GetConnectionString("Database"));
             });
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             return services;
         }
