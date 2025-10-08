@@ -6,7 +6,10 @@
         public int CustomerId { get; set; }
         public Customer Customer { get; set; } = default!;
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-        public decimal TotalPrice => OrderItems.Sum(oi => oi.Item.Price * oi.Quantity);
-
+        public decimal TotalPrice
+        {
+            get => OrderItems.Sum(oi => oi.Item.Price * oi.Quantity);
+            private set { }
+        }
     }
 }
