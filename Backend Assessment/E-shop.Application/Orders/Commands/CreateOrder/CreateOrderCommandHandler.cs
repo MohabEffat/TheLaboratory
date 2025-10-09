@@ -3,43 +3,37 @@
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, CreateOrderResult>
     {
         private readonly IApplicationDbContext _context;
-        public CreateOrderCommandHandler(IApplicationDbContext context)
+        private readonly ILogger<CreateOrderCommandHandler> _logger;
+
+        public CreateOrderCommandHandler(
+            IApplicationDbContext context,
+            ILogger<CreateOrderCommandHandler> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public async Task<CreateOrderResult> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Handling CreateOrderCommand for customer Id: {CustomerId}", command.Order.CustomerId);
+
+            var customer = await _context.customers.FindAsync(command.Order.CustomerId);
+            if (customer == null)
+            {
+                _logger.LogWarning("Customer with Id: {CustomerId} not found", command.Order.CustomerId);
+                throw new NotFoundException($"Customer with Id: {command.Order.CustomerId} not found");
+            }
+
             var order = new Order
             {
                 CustomerId = command.Order.CustomerId,
-                OrderItems  = new List<OrderItem>()
+                OrderItems = new List<OrderItem>()
             };
 
-            foreach (var itemDto in command.Order.OrderItems)
-            {
-                var item = await _context.items.FindAsync(itemDto.ItemId);
-
-                if (item == null)
-                    throw new NotFoundException($"Item with ID {itemDto.ItemId} not found.");
-
-                if (item.QuantityInStock < itemDto.Quantity)
-                    throw new InvalidOperationException($"Not enough stock for item '{item.Name}'.");
-
-                var orderItem = new OrderItem
-                {
-                    ItemId = item.Id,
-                    Quantity = itemDto.Quantity,
-                    Item = item,
-                };
-
-                item.QuantityInStock -= itemDto.Quantity;
-
-                order.OrderItems.Add(orderItem);
-            }
-
-            await _context.orders.AddAsync(order);
+            await _context.orders.AddAsync(order, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Order created successfully for customer Id: {CustomerId}, Order Id: {OrderId}", command.Order.CustomerId, order.Id);
 
             return new CreateOrderResult(order.Id);
         }

@@ -1,6 +1,6 @@
 ﻿namespace E_shop.Application.Orders.Commands.CreateOrder
 {
-    public record CreateOrderCommand (OrderDto Order) : IRequest<CreateOrderResult>;
+    public record CreateOrderCommand (OrderCreateDto Order) : IRequest<CreateOrderResult>;
     public record CreateOrderResult (int Id);
 
     public class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
