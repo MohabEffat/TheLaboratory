@@ -4,6 +4,6 @@ namespace E_shop.Core.interfaces
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        public Task<Customer?> GetByEmailAsyncAndPassword(string email, string password);
+        public Task<Customer?> GetByEmailAsync(string email);
     }
 }
