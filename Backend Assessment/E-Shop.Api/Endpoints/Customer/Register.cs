@@ -1,10 +1,4 @@
-﻿using Carter;
-using E_shop.Application.Dtos;
-using E_shop.Application.Users.Commands.Register;
-using Mapster;
-using MediatR;
-
-namespace E_Shop.Api.Endpoints.Customer
+﻿namespace E_Shop.Api.Endpoints.Customer
 {
     public record registerRequest(RegisterDto Register);
     public record registerResponse(string Email);

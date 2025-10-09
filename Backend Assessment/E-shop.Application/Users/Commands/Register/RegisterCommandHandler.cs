@@ -1,10 +1,4 @@
-﻿using E_shop.Core.Entities;
-using E_shop.Core.interfaces;
-using Mapster;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-
-namespace E_shop.Application.Users.Commands.Register
+﻿namespace E_shop.Application.Users.Commands.Register
 {
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterResult>
     {

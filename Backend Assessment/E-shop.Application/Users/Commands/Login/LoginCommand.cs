@@ -1,8 +1,4 @@
-﻿using E_shop.Application.Dtos;
-using FluentValidation;
-using MediatR;
-
-namespace E_shop.Application.Users.Commands.Login
+﻿namespace E_shop.Application.Users.Commands.Login
 {
     public record LoginCommand(LoginDto Login) : IRequest<loginResult>;
     public record loginResult(bool IsSuccess);

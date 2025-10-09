@@ -1,7 +1,4 @@
-﻿using E_shop.Core.Exceptions;
-using Microsoft.AspNetCore.Identity;
-
-namespace E_Shop.Infrastructure.Data.Repositories
+﻿namespace E_Shop.Infrastructure.Data.Repositories
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {

@@ -1,10 +1,4 @@
-﻿using Carter;
-using E_shop.Application.Dtos;
-using E_shop.Application.Users.Commands.Login;
-using Mapster;
-using MediatR;
-
-namespace E_Shop.Api.Endpoints.Customer
+﻿namespace E_Shop.Api.Endpoints.Customer
 {
     public record loginRequest(LoginDto Login);
     public record loginResponse(bool IsSuccess);

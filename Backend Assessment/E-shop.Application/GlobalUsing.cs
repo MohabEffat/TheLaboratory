@@ -1,1 +1,11 @@
 ﻿global using Microsoft.Extensions.DependencyInjection;
+global using E_shop.Application.Behaviors;
+global using E_shop.Core.Entities;
+global using FluentValidation;
+global using Microsoft.AspNetCore.Identity;
+global using System.Reflection;
+global using E_shop.Core.interfaces;
+global using Mapster;
+global using MediatR;
+global using E_shop.Application.Dtos;
+global using E_shop.Core.Exceptions;

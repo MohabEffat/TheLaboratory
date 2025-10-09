@@ -1,8 +1,4 @@
-﻿using E_shop.Application.Dtos;
-using FluentValidation;
-using MediatR;
-
-namespace E_shop.Application.Users.Commands.Register
+﻿namespace E_shop.Application.Users.Commands.Register
 {
     public record RegisterCommand(RegisterDto Register) : IRequest<RegisterResult>;
     public record RegisterResult (string Email);

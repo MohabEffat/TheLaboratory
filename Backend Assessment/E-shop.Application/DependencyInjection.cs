@@ -1,10 +1,4 @@
-﻿using E_shop.Application.Behaviors;
-using E_shop.Core.Entities;
-using FluentValidation;
-using Microsoft.AspNetCore.Identity;
-using System.Reflection;
-
-namespace E_shop.Application
+﻿namespace E_shop.Application
 {
     public static class DependencyInjection
     {

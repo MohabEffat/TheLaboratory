@@ -1,10 +1,4 @@
-﻿using E_shop.Core.Entities;
-using E_shop.Core.Exceptions;
-using E_shop.Core.interfaces;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-
-namespace E_shop.Application.Users.Commands.Login
+﻿namespace E_shop.Application.Users.Commands.Login
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, loginResult>
     {

@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-
-namespace E_shop.Application.Behaviors
+﻿namespace E_shop.Application.Behaviors
 {
 
     public class ValidationBehavior<TRequest, TResponse>

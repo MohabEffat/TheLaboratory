@@ -1,8 +1,4 @@
-﻿using E_shop.Core.interfaces;
-using E_Shop.Infrastructure.Data;
-using E_Shop.Infrastructure.Data.Repositories;
-using Microsoft.AspNetCore.Identity;
-namespace E_Shop.Infrastructure
+﻿namespace E_Shop.Infrastructure
 {
     public static class DependencyInjection
     {
