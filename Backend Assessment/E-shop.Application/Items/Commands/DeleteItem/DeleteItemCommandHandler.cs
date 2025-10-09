@@ -1,4 +1,6 @@
-﻿namespace E_shop.Application.Items.Commands.DeleteItem
+﻿using E_shop.Core.Events;
+
+namespace E_shop.Application.Items.Commands.DeleteItem
 {
     public class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand, DeleteItemResult>
     {
@@ -24,7 +26,10 @@
             }
 
             _context.items.Remove(item);
+
             await _context.SaveChangesAsync(cancellationToken);
+
+            await _context.AddEventAsync(new ItemDeletedEvent(item.Name));
 
             _logger.LogInformation("Item with Id: {ItemId} deleted successfully", command.Id);
 

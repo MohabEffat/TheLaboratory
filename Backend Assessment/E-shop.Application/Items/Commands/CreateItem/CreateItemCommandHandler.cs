@@ -1,4 +1,6 @@
-﻿namespace E_shop.Application.Items.Commands.CreateItem
+﻿using E_shop.Core.Events;
+
+namespace E_shop.Application.Items.Commands.CreateItem
 {
     public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, CreateItemResult>
     {
@@ -17,6 +19,8 @@
 
             var item = command.Item.Adapt<Item>();
             await _context.items.AddAsync(item);
+
+            await _context.AddEventAsync(new ItemCreatedEvent(command.Item.Name));
 
             _logger.LogInformation("Item created with Id: {ItemId}", item.Id);
 

@@ -1,18 +1,20 @@
-﻿namespace E_shop.Application.Users.Commands.Login
+﻿using E_shop.Core.Events;
+
+namespace E_shop.Application.Users.Commands.Login
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, loginResult>
     {
         private readonly IPasswordHasher<Customer> _passwordHasher;
-        private readonly IApplicationDbContext _dbContext;
+        private readonly IApplicationDbContext _context;
         private readonly ILogger<LoginCommandHandler> _logger;
 
         public LoginCommandHandler(
-            IApplicationDbContext dbContext,
+            IApplicationDbContext context,
             IPasswordHasher<Customer> passwordHasher,
             ILogger<LoginCommandHandler> logger)
         {
             _passwordHasher = passwordHasher;
-            _dbContext = dbContext;
+            _context = context;
             _logger = logger;
         }
 
@@ -20,7 +22,7 @@
         {
             _logger.LogInformation("Handling LoginCommand for email: {Email}", command.Login.Email);
 
-            var user = await _dbContext.customers
+            var user = await _context.customers
                 .FirstOrDefaultAsync(u => u.Email == command.Login.Email, cancellationToken);
 
             if (user == null)
@@ -34,6 +36,9 @@
             if (result == PasswordVerificationResult.Success)
             {
                 _logger.LogInformation("Login successful for email: {Email}", command.Login.Email);
+
+                await _context.AddEventAsync(new CustomerLoginEvent(command.Login.Email));
+
                 return new loginResult(true);
             }
             else

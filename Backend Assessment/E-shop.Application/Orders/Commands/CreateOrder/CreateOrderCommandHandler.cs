@@ -1,4 +1,6 @@
-﻿namespace E_shop.Application.Orders.Commands.CreateOrder
+﻿using E_shop.Core.Events;
+
+namespace E_shop.Application.Orders.Commands.CreateOrder
 {
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, CreateOrderResult>
     {
@@ -31,6 +33,9 @@
             };
 
             await _context.orders.AddAsync(order, cancellationToken);
+            
+            await _context.AddEventAsync(new OrderCreatedEvent(command.Order.CustomerId));
+
             await _context.SaveChangesAsync(cancellationToken);
 
             _logger.LogInformation("Order created successfully for customer Id: {CustomerId}, Order Id: {OrderId}", command.Order.CustomerId, order.Id);

@@ -1,4 +1,7 @@
-﻿namespace E_shop.Application.Users.Commands.Register
+﻿using E_shop.Core.Events;
+using Microsoft.EntityFrameworkCore;
+
+namespace E_shop.Application.Users.Commands.Register
 {
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterResult>
     {
@@ -34,6 +37,9 @@
 
             await _context.customers.AddAsync(customer);
             await _context.SaveChangesAsync(cancellationToken);
+
+            await _context.AddEventAsync(new CustomerRegisteredEvent(command.Register.Email));
+
 
             _logger.LogInformation("Customer registered successfully: {Email}", customer.Email);
 

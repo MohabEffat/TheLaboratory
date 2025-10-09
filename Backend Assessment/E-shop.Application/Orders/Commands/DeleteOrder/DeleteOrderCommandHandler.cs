@@ -1,4 +1,6 @@
-﻿namespace E_shop.Application.Orders.Commands.DeleteOrder
+﻿using E_shop.Core.Events;
+
+namespace E_shop.Application.Orders.Commands.DeleteOrder
 {
     public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, DeleteOrderResult>
     {
@@ -11,22 +13,24 @@
             _logger = logger;
         }
 
-        public async Task<DeleteOrderResult> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteOrderResult> Handle(DeleteOrderCommand command, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Attempting to delete order with Id: {OrderId}", request.Id);
+            _logger.LogInformation("Attempting to delete order with Id: {OrderId}", command.Id);
 
-            var order = await _context.orders.FindAsync(request.Id);
+            var order = await _context.orders.FindAsync(command.Id);
 
             if (order == null)
             {
-                _logger.LogWarning("Order with Id: {OrderId} not found", request.Id);
-                throw new NotFoundException($"Order With Id: {request.Id} Not Found");
+                _logger.LogWarning("Order with Id: {OrderId} not found", command.Id);
+                throw new NotFoundException($"Order With Id: {command.Id} Not Found");
             }
 
             _context.orders.Remove(order);
             await _context.SaveChangesAsync(cancellationToken);
 
-            _logger.LogInformation("Order with Id: {OrderId} deleted successfully", request.Id);
+            await _context.AddEventAsync(new OrderDeletedEvent(command.Id));
+
+            _logger.LogInformation("Order with Id: {OrderId} deleted successfully", command.Id);
 
             return new DeleteOrderResult(true);
         }
