@@ -8,6 +8,8 @@
         public GetOrdersByCustomerIdCommandValidator()
         {
             RuleFor(x => x.Id)
+                .NotEmpty()
+                .WithMessage("Customer ID can not be empty.")
                 .GreaterThan(0)
                 .WithMessage("Customer ID must be greater than zero.");
         }

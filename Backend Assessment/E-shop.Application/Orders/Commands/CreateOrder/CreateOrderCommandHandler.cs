@@ -13,11 +13,10 @@
             var order = new Order
             {
                 CustomerId = command.Order.CustomerId,
-
                 OrderItems  = new List<OrderItem>()
             };
 
-            foreach (var itemDto in command.Order.Items)
+            foreach (var itemDto in command.Order.OrderItems)
             {
                 var item = await _context.items.FindAsync(itemDto.ItemId);
 

@@ -13,7 +13,7 @@
                 .GreaterThan(0)
                 .WithMessage("CustomerId must be greater than zero.");
 
-            RuleFor(x => x.Order.Items)
+            RuleFor(x => x.Order.OrderItems)
                 .NotEmpty()
                 .WithMessage("At least one order item is required.");
         }
