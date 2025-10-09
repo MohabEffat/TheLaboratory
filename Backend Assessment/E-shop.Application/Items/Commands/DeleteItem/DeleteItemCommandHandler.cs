@@ -2,22 +2,21 @@
 {
     public class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand, DeleteItemResult>
     {
-        private readonly IRepository<Item> _repository;
+        private readonly IApplicationDbContext _context;
 
-        public DeleteItemCommandHandler(IRepository<Item> repository)
+        public DeleteItemCommandHandler(IApplicationDbContext context)
         {
-            _repository = repository;
+            _context = context;
         }
 
         public async Task<DeleteItemResult> Handle(DeleteItemCommand command, CancellationToken cancellationToken)
         {
-            var result = await _repository.Delete(command.Id);
+            var item = await _context.items.FindAsync(command.Id);
 
-            if (!result)
+            if (item == null)
                 throw new NotFoundException($"Item Not Found with Id: {command.Id}");
 
             return new DeleteItemResult(true);
-
         }
     }
 }

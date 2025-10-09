@@ -2,14 +2,10 @@
 {
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, CreateOrderResult>
     {
-        private readonly IRepository<Order> _orderRepository;
-        private readonly IRepository<Item> _itemRepository;
-
-        public CreateOrderCommandHandler(IRepository<Order> repository,
-            IRepository<Order> orderRepository, IRepository<Item> itemRepository)
+        private readonly IApplicationDbContext _context;
+        public CreateOrderCommandHandler(IApplicationDbContext context)
         {
-            _orderRepository = orderRepository;
-            _itemRepository = itemRepository;
+            _context = context;
         }
 
         public async Task<CreateOrderResult> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
@@ -23,10 +19,10 @@
 
             foreach (var itemDto in command.Order.Items)
             {
-                var item = await _itemRepository.GetByIdAsync(itemDto.ItemId);
+                var item = await _context.items.FindAsync(itemDto.ItemId);
 
                 if (item == null)
-                    throw new KeyNotFoundException($"Item with ID {itemDto.ItemId} not found.");
+                    throw new NotFoundException($"Item with ID {itemDto.ItemId} not found.");
 
                 if (item.QuantityInStock < itemDto.Quantity)
                     throw new InvalidOperationException($"Not enough stock for item '{item.Name}'.");
@@ -43,7 +39,8 @@
                 order.OrderItems.Add(orderItem);
             }
 
-            await _orderRepository.CreateAsync(order);
+            await _context.orders.AddAsync(order);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return new CreateOrderResult(order.Id);
         }

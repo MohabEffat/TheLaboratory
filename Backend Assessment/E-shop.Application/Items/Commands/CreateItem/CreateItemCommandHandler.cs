@@ -2,18 +2,18 @@
 {
     public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, CreateItemResult>
     {
-        private readonly IRepository<Item> _repository;
+        private readonly IApplicationDbContext _context;
 
-        public CreateItemCommandHandler(IRepository<Item> repository)
+        public CreateItemCommandHandler(IApplicationDbContext context)
         {
-            _repository = repository;
+            _context = context;
         }
 
         public async Task<CreateItemResult> Handle(CreateItemCommand command, CancellationToken cancellationToken)
         {
             var item = command.Item.Adapt<Item>();
 
-            await _repository.CreateAsync(item);
+            await _context.items.AddAsync(item);
 
             return new CreateItemResult(item.Id);
         }
