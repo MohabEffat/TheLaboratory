@@ -19,7 +19,6 @@
 
                 return Results.Ok(response);
             })
-            .WithTags("Customer")
             .WithName("Login")
             .WithSummary("Authenticate a customer")
             .WithDescription("Logs in a customer using their email and password")

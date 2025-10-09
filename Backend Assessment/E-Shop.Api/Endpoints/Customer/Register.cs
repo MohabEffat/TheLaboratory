@@ -16,7 +16,6 @@
 
                 return Results.Ok(response);
             })
-            .WithTags("Customer")
             .WithName("Register")
             .Produces<registerResponse>(StatusCodes.Status200OK)
             .ProducesValidationProblem(StatusCodes.Status400BadRequest)

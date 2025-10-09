@@ -9,9 +9,13 @@
             _repository = repository;
         }
 
-        public Task<CreateItemResult> Handle(CreateItemCommand request, CancellationToken cancellationToken)
+        public async Task<CreateItemResult> Handle(CreateItemCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = command.Item.Adapt<Item>();
+
+            await _repository.CreateAsync(item);
+
+            return new CreateItemResult(item.Id);
         }
     }
 }

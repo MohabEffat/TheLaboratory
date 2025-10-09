@@ -1,7 +1,7 @@
 ﻿namespace E_shop.Application.Items.Commands.CreateItem
 {
     public record CreateItemCommand (ItemDto Item) : IRequest<CreateItemResult>;
-    public record CreateItemResult(bool IsSuccess);
+    public record CreateItemResult(int Id);
 
     public class CreateItemCommandValidator : AbstractValidator<CreateItemCommand>
     {
@@ -25,11 +25,11 @@
 
             RuleFor(x => x.Item.QuantityInStock)
                 .GreaterThanOrEqualTo(0)
-                .WithMessage("Quantity in stock cannot be negative.")
+                .WithMessage("Quantity in stock cannot be negative.");
 
-            RuleFor(x => x.Item.price)
+            RuleFor(x => x.Item.Price)
                 .GreaterThan(0)
-                .WithMessage("Price must be greater than zero.")
+                .WithMessage("Price must be greater than zero.");
 
         }
     }

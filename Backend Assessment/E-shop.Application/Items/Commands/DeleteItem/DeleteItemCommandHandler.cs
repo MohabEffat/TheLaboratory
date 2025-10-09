@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace E_shop.Application.Items.Commands.DeleteItem
+﻿namespace E_shop.Application.Items.Commands.DeleteItem
 {
-    internal class DeleteItemCommandHandler
+    public class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand, DeleteItemResult>
     {
+        private readonly IRepository<Item> _repository;
+
+        public DeleteItemCommandHandler(IRepository<Item> repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<DeleteItemResult> Handle(DeleteItemCommand command, CancellationToken cancellationToken)
+        {
+            var result = await _repository.Delete(command.Id);
+
+            if (!result)
+                throw new NotFoundException($"Item Not Found with Id: {command.Id}");
+
+            return new DeleteItemResult(true);
+
+        }
     }
 }
