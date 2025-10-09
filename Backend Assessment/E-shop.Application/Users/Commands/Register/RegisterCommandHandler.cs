@@ -1,5 +1,4 @@
 ﻿using E_shop.Core.Events;
-using Microsoft.EntityFrameworkCore;
 
 namespace E_shop.Application.Users.Commands.Register
 {
