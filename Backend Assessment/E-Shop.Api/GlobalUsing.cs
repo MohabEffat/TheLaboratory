@@ -1,9 +1,0 @@
-﻿global using Carter;
-global using E_shop.Application.Dtos;
-global using E_shop.Application.Users.Commands.Login;
-global using Mapster;
-global using MediatR;
-global using E_shop.Application.Users.Commands.Register;
-global using E_shop.Application;
-global using E_Shop.Api.Middlewares;
-global using E_Shop.Infrastructure;
