@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<MoviesAPIContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MoviesAPIContext")
+    options.UseInMemoryDatabase(("Movies")
     ?? throw new InvalidOperationException("Connection string 'MoviesAPIContext' not found.")));
 
 // Add services to the container.
@@ -15,6 +15,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<MoviesAPIContext>();
+    await MoviesContextSeed.SeedAsync(context);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

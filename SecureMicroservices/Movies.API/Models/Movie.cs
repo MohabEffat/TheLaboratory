@@ -7,6 +7,8 @@
         public string Director { get; set; } = default!;
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; } = default!;
+        public string Rating { get; set; } = default!;
+        public string ImageUrl { get; set; } = default!;
 
     }
 }

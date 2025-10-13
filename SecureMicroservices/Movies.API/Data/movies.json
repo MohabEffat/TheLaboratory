@@ -1,0 +1,92 @@
+[
+    {
+        "Id": 1,
+        "Title": "Inception",
+        "Director": "Christopher Nolan",
+        "ReleaseDate": "2010-07-16T00:00:00",
+        "Genre": "Science Fiction",
+        "Rating": "PG-13",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg"
+    },
+    {
+        "Id": 2,
+        "Title": "The Shawshank Redemption",
+        "Director": "Frank Darabont",
+        "ReleaseDate": "1994-09-22T00:00:00",
+        "Genre": "Drama",
+        "Rating": "R",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"
+    },
+    {
+        "Id": 3,
+        "Title": "The Dark Knight",
+        "Director": "Christopher Nolan",
+        "ReleaseDate": "2008-07-18T00:00:00",
+        "Genre": "Action",
+        "Rating": "PG-13",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+    },
+    {
+        "Id": 4,
+        "Title": "Pulp Fiction",
+        "Director": "Quentin Tarantino",
+        "ReleaseDate": "1994-10-14T00:00:00",
+        "Genre": "Crime",
+        "Rating": "R",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/dM2w364MScsjFf8pfMbaWUcWrR.jpg"
+    },
+    {
+        "Id": 5,
+        "Title": "Interstellar",
+        "Director": "Christopher Nolan",
+        "ReleaseDate": "2014-11-07T00:00:00",
+        "Genre": "Adventure",
+        "Rating": "PG-13",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+    },
+    {
+        "Id": 6,
+        "Title": "The Godfather",
+        "Director": "Francis Ford Coppola",
+        "ReleaseDate": "1972-03-24T00:00:00",
+        "Genre": "Crime",
+        "Rating": "R",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/3bhkrj58Vtu7enYsRolD1fZdja1.jpg"
+    },
+    {
+        "Id": 7,
+        "Title": "Fight Club",
+        "Director": "DavId Fincher",
+        "ReleaseDate": "1999-10-15T00:00:00",
+        "Genre": "Drama",
+        "Rating": "R",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg"
+    },
+    {
+        "Id": 8,
+        "Title": "The Matrix",
+        "Director": "Lana Wachowski, Lilly Wachowski",
+        "ReleaseDate": "1999-03-31T00:00:00",
+        "Genre": "Science Fiction",
+        "Rating": "R",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
+    },
+    {
+        "Id": 9,
+        "Title": "Gladiator",
+        "Director": "RIdley Scott",
+        "ReleaseDate": "2000-05-05T00:00:00",
+        "Genre": "Action",
+        "Rating": "R",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg"
+    },
+    {
+        "Id": 10,
+        "Title": "Forrest Gump",
+        "Director": "Robert Zemeckis",
+        "ReleaseDate": "1994-07-06T00:00:00",
+        "Genre": "Drama",
+        "Rating": "PG-13",
+        "ImageUrl": "https://image.tmdb.org/t/p/original/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"
+    }
+]
